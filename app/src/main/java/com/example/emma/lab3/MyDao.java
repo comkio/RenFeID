@@ -13,6 +13,9 @@ public interface MyDao {
     @Query("SELECT * FROM user")
     List<User> getAllUsers();
 
+    @Query("SELECT COUNT(*) FROM user")
+    int numUsers();
+
     @Query("SELECT * FROM travel")
     List<Travel> getAllTravels();
 
