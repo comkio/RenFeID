@@ -16,17 +16,17 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        final EditText registerName = findViewById(R.id.register_user);
-        EditText registerPass = findViewById(R.id.register_pass);
+        final EditText registerName = (EditText) findViewById(R.id.register_user);
+        final EditText registerPass = findViewById(R.id.register_pass);
 
-        final String userName = registerName.getText().toString();
-        final String userPass = registerPass.getText().toString();
-
-        Button register = (Button) findViewById(R.id.register_button);
+        final Button register = (Button) findViewById(R.id.register_button);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String userName = registerName.getText().toString();
+                String userPass = registerPass.getText().toString();
+
                 registerButton(userName, userPass);
             }
         });
@@ -46,13 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
 
             MainActivity.db.myDao().insertUsers(user);
 
-
-
         }else{//si la taula ja te registres agafa en crea un de nou amb el següent id
 
             User user = new User(MainActivity.db.myDao().getAllUsers().get(numUsers).getId() + 1,
                     userName, userPass);
-
             MainActivity.db.myDao().insertUsers(user);
 
         }
