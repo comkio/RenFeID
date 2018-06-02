@@ -25,12 +25,14 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("USUARIS", "Num users: "+ MainActivity.db.myDao().numUsers());
 
 
-        final String user = userName.getText().toString();
-        final String pass = userPass.getText().toString();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String user = userName.getText().toString();
+                String pass = userPass.getText().toString();
+
                 loginButton(user, pass);
             }
         });
@@ -40,22 +42,21 @@ public class LoginActivity extends AppCompatActivity {
 
         int numUsers = MainActivity.db.myDao().numUsers();
 
-
         for(int i = 0; i < numUsers; i++){
-            if(user == MainActivity.db.myDao().getAllUsers().get(i).getName()){
-                    Log.d("HOLA", "HOLAAAA1111111");
+
+            if(user.equals(MainActivity.db.myDao().getAllUsers().get(i).getName())){
+
                     int index = i;
-                if(pass == MainActivity.db.myDao().getAllUsers().get(index).getTag());
-                    Log.d("HOLA", "HOLAAAA2222222");
+
+                if(pass.equals(MainActivity.db.myDao().getAllUsers().get(index).getTag())){
+
                     Intent intent = new Intent(this, HomeUser.class);
+                    intent.putExtra("id", MainActivity.db.myDao().getAllUsers().get(i).getId());
+                    intent.putExtra("user", MainActivity.db.myDao().getAllUsers().get(i).getId());
                     startActivity(intent);
+
+                }
             }
         }
-
-
     }
-
-
-
-
 }

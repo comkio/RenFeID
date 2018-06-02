@@ -10,34 +10,40 @@ import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    String userName = "";
+    String userPass = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        Button register = (Button) findViewById(R.id.register_button);
 
         final EditText registerName = findViewById(R.id.register_user);
-        EditText registerPass = findViewById(R.id.register_pass);
+        final EditText registerPass = findViewById(R.id.register_pass);
 
-        final String userName = registerName.getText().toString();
-        final String userPass = registerPass.getText().toString();
 
-        Button register = (Button) findViewById(R.id.register_button);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userName = (String) registerName.getText().toString();
+                userPass = (String) registerPass.getText().toString();
+
                 registerButton(userName, userPass);
             }
         });
     }
 
-
     private void registerButton(String userName, String userPass){
 
         int numUsers = MainActivity.db.myDao().getAllUsers().size() - 1;
 
+
         Log.d("USER", "Print: " + MainActivity.db.myDao().numUsers());
+        Log.d("USER", "userName: " + userName);
 
         //comprova si la taula esta buida, si ho esta crea el primer registre
         if(MainActivity.db.myDao().numUsers() == 0) {
