@@ -22,11 +22,14 @@ public interface MyDao {
     @Query("SELECT * FROM stops")
     List<Stops> getAllStops();
 
+    @Query("SELECT COUNT(*) FROM stops")
+    int numStops();
+
     @Insert
     void insertUsers(User... users);
 
     @Insert
-    void insertStops(List<Stops> stops);
+    void insertStops(Stops... stops);
 
     @Insert
     void insertTravels(Travel... travels);

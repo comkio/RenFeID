@@ -1,5 +1,6 @@
 package com.example.emma.lab3;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -50,6 +51,9 @@ public class MyTaskOrigin extends AsyncTask {
                 NodeList nodeList3 = doc3.getElementsByTagName("hexepc"); //busca el parametre que ens interessa
                 if(nodeList3.getLength() != 0) {
                     rfidList.add(nodeList3.item(0).getTextContent());
+                    Log.d("LLEGINT", "Tag: "+ nodeList3.item(0).getTextContent());
+                    Stops stop = new Stops(Integer.parseInt(nodeList3.item(0).getTextContent()),"Vilassar de Mar", originIP);
+                    MainActivity.db.myDao().insertStops(stop);
                 }
             }
 
@@ -67,8 +71,12 @@ public class MyTaskOrigin extends AsyncTask {
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
             MainActivity.myRfid = rfidList.get(0);
+
         }
-        Log.i("MyTaskOrigin:", "rfid read:"+MainActivity.myRfid);
-        //stat = "start";
+/*
+        if (MainActivity.db.myDao().numStops() > 0) {
+            Log.i("MyTaskOrigin:", "rfid read:" + MainActivity.db.myDao().getAllStops().get(0).getName());
+            //stat = "start";
+        }*/
     }
 }
