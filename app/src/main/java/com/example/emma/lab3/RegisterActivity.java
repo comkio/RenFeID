@@ -1,5 +1,6 @@
 package com.example.emma.lab3;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -51,6 +53,11 @@ public class RegisterActivity extends AppCompatActivity {
             User user = new User(MainActivity.db.myDao().getAllUsers().get(numUsers).getId() + 1,
                     userName, userPass);
             MainActivity.db.myDao().insertUsers(user);
+            Context context = getApplicationContext();
+            CharSequence text = "Usuari Registrat!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
 
         }
 
