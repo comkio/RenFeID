@@ -34,6 +34,7 @@ public class MyTaskOrigin extends AsyncTask {
 
             Document doc = db.parse(new URL(stringUrl).openStream());
             NodeList nodeList = doc.getElementsByTagName("id"); //id = simulator
+
             String id = nodeList.item(0).getTextContent();
 
             String urlstart = stringUrl+"/"+id+"/start";
@@ -52,8 +53,13 @@ public class MyTaskOrigin extends AsyncTask {
                 if(nodeList3.getLength() != 0) {
                     rfidList.add(nodeList3.item(0).getTextContent());
                     Log.d("LLEGINT", "Tag: "+ nodeList3.item(0).getTextContent());
-                    Stops stop = new Stops(Integer.parseInt(nodeList3.item(0).getTextContent()),"Vilassar de Mar", originIP);
+                    Log.d("LLEGINT", "Tag2: " + Integer.parseInt(nodeList3.item(0).getTextContent()));
+                    /*
+                    Stops stop = new Stops(Integer.parseInt(nodeList3.item(0).getTextContent()),"Vilassar de Mar", "localhost");
                     MainActivity.db.myDao().insertStops(stop);
+                    Travel travel = new Travel(1, Integer.parseInt(nodeList3.item(0).getTextContent()), 0, true, 0.5, 1);
+                    MainActivity.db.myDao().insertTravels(travel);
+                    */
                 }
             }
 
@@ -71,12 +77,14 @@ public class MyTaskOrigin extends AsyncTask {
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
             MainActivity.myRfid = rfidList.get(0);
-
         }
-/*
+
+        int numUsers = MainActivity.db.myDao().numUsers();
+
+
         if (MainActivity.db.myDao().numStops() > 0) {
             Log.i("MyTaskOrigin:", "rfid read:" + MainActivity.db.myDao().getAllStops().get(0).getName());
             //stat = "start";
-        }*/
+        }
     }
 }

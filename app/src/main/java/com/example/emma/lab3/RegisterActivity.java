@@ -45,8 +45,14 @@ public class RegisterActivity extends AppCompatActivity {
         if(MainActivity.db.myDao().numUsers() == 0) {
 
             User user = new User(1, userName, userPass);
-
             MainActivity.db.myDao().insertUsers(user);
+
+            Context context = getApplicationContext();
+            CharSequence text = "Usuari Registrat!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
 
         }else{//si la taula ja te registres agafa en crea un de nou amb el següent id
 
@@ -56,8 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
             Context context = getApplicationContext();
             CharSequence text = "Usuari Registrat!";
             int duration = Toast.LENGTH_SHORT;
+
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+
 
         }
 

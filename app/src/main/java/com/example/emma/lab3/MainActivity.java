@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //final String originIP = "192.168.2.110";
-        final String originIP = "192.168.127.1";//ip del pc per treballar amb emulador
+        //final String originIP = "localhost";
+        final String originIP = "192.168.1.132";//ip del pc en cas d'utilitzar simulador
         final String destIP = "192.168.2.152";
 
         //Creating Database
