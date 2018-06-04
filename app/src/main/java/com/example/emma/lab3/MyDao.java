@@ -19,6 +19,9 @@ public interface MyDao {
     @Query("SELECT * FROM travel")
     List<Travel> getAllTravels();
 
+    @Query("SELECT id FROM travel")
+    List<Integer> getAllTravelsById();
+
     @Query("SELECT * FROM stops")
     List<Stops> getAllStops();
 

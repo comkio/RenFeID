@@ -29,8 +29,6 @@ public class LoginActivity extends AppCompatActivity {
                 String user = userName.getText().toString();
                 String pass = userPass.getText().toString();
 
-
-
                 loginButton(user, pass);
             }
         });
