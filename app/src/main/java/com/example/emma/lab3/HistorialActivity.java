@@ -18,13 +18,13 @@ public class HistorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial);
 
-        Travel travel1 = new Travel(2,1,2,true,0.5,1);
+        //Travel travel1 = new Travel(0,1,2,true,0.5,1);
         //Travel travel2 = new Travel(2,1,2,true,0.5,1);
-        MainActivity.db.myDao().insertTravels(travel1);
+        //MainActivity.db.myDao().insertTravels(travel1);
         //MainActivity.db.myDao().insertTravels(travel2);
-        Log.d("test", MainActivity.db.myDao().getAllTravelsById().toString());
 
-        List<Integer> travelById = MainActivity.db.myDao().getAllTravelsById();
+        int userID = MainActivity.db.myDao().getUserLogged();
+        List<Integer> travelById = MainActivity.db.myDao().getAllTravelsByUser(userID);
 
         ArrayAdapter<String> adaptador = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, travelById);
 

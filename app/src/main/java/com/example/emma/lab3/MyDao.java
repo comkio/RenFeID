@@ -19,11 +19,17 @@ public interface MyDao {
     @Query("SELECT * FROM travel")
     List<Travel> getAllTravels();
 
-    @Query("SELECT id FROM travel")
-    List<Integer> getAllTravelsById();
+    @Query("SELECT id FROM travel WHERE userId = :user AND status LIKE 0")
+    List<Integer> getAllTravelsByUser(int user);
 
     @Query("SELECT * FROM stops")
     List<Stops> getAllStops();
+
+    @Query("SELECT id FROM user WHERE login LIKE 1")
+    int getUserLogged();
+
+    @Query("SELECT id FROM travel WHERE status LIKE 1")
+    int getTravelInitiated();
 
     @Query("SELECT COUNT(*) FROM stops")
     int numStops();
@@ -45,7 +51,5 @@ public interface MyDao {
 
     @Delete
     void deleteTravels(Travel travel);
-
-
 
 }

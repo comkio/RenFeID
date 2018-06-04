@@ -49,9 +49,12 @@ public class MyTaskDest extends AsyncTask {
                 NodeList nodeList3 = doc3.getElementsByTagName("hexepc");
                 if(nodeList3.getLength() != 0) {
                     rfid = nodeList3.item(0).getTextContent(); //tag que llegeix a l'estacio
-                    if (rfid.equals(MainActivity.myRfid)) {
-                        //stat = "end";
-                        Log.i("MyTaskDest:", "FI DEL VIATGE PER L'USUARI AMB TAG: " + rfid);
+                    int travelInitiated = MainActivity.db.myDao().getTravelInitiated();
+                    Travel travel = MainActivity.db.myDao().getAllTravels().get(travelInitiated);
+                    if (rfid.equals(travel.userId)){
+                        travel.setStatus(false);
+                        travel.setIdTo(Integer.parseInt(destIP));
+                        Log.i("MyTaskDest:", "FI DEL VIATGE");
                     }
                 }
             }

@@ -37,14 +37,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerButton(String userName, String userPass){
 
-        int numUsers = MainActivity.db.myDao().getAllUsers().size() - 1;
-
-        Log.d("USER", "Print: " + MainActivity.db.myDao().numUsers());
-
         //comprova si la taula esta buida, si ho esta crea el primer registre
         if(MainActivity.db.myDao().numUsers() == 0) {
 
-            User user = new User(1, userName, userPass);
+            User user = new User(0, userName, userPass, false);
             MainActivity.db.myDao().insertUsers(user);
 
             Context context = getApplicationContext();
@@ -56,8 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         }else{//si la taula ja te registres agafa en crea un de nou amb el següent id
 
-            User user = new User(MainActivity.db.myDao().getAllUsers().get(numUsers).getId() + 1,
-                    userName, userPass);
+            User user = new User(0,userName, userPass, false);
             MainActivity.db.myDao().insertUsers(user);
             Context context = getApplicationContext();
             CharSequence text = "Usuari Registrat!";

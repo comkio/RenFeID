@@ -38,13 +38,16 @@ public class LoginActivity extends AppCompatActivity {
 
         int numUsers = MainActivity.db.myDao().numUsers();
 
+        Log.d("print", "numUsuaris: "+ numUsers);
+
         for(int i = 0; i < numUsers; i++){
             if(user.equals(MainActivity.db.myDao().getAllUsers().get(i).getName())){
                 int index = i;
-                if(pass.equals(MainActivity.db.myDao().getAllUsers().get(index).getTag())) {
+                if(pass.equals(MainActivity.db.myDao().getAllUsers().get(index).getPassword())) {
                     Intent intent = new Intent(this, HomeUser.class);
                     intent.putExtra("ID", MainActivity.db.myDao().getAllUsers().get(i).getId());
                     intent.putExtra("User", user);
+                    MainActivity.db.myDao().getAllUsers().get(i).setLogin(true);
                     startActivity(intent);
                 }else{
                     Context context = getApplicationContext();

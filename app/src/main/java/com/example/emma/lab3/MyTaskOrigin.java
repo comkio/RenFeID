@@ -76,15 +76,15 @@ public class MyTaskOrigin extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
-            MainActivity.myRfid = rfidList.get(0);
+            MainActivity.db.myDao().insertTravels(new Travel(0,Integer.parseInt(originIP),0,true,0,
+                    MainActivity.db.myDao().getUserLogged()));
         }
 
-        int numUsers = MainActivity.db.myDao().numUsers();
+        /*int numUsers = MainActivity.db.myDao().numUsers();
 
 
         if (MainActivity.db.myDao().numStops() > 0) {
             Log.i("MyTaskOrigin:", "rfid read:" + MainActivity.db.myDao().getAllStops().get(0).getName());
-            //stat = "start";
-        }
+        }*/
     }
 }

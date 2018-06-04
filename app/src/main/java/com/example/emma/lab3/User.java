@@ -6,18 +6,21 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class User {
 
-    @PrimaryKey
-    int id;
+    @PrimaryKey (autoGenerate = true)
+    int id; //rfid tag
 
     String name;
 
-    String tag;
+    String password;
 
-    public User(int id, String name, String tag){
+    boolean login;
+
+    public User(int id, String name, String password, boolean login){
 
         this.id = id;
         this.name = name;
-        this.tag = tag;
+        this.password = password;
+        this.login = login;
 
     }
 
@@ -37,11 +40,20 @@ public class User {
         this.name = name;
     }
 
-    public String getTag() {
-        return tag;
+    public boolean isLogin() {
+        return login;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setLogin(boolean login) {
+        this.login = login;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
