@@ -1,7 +1,10 @@
 package com.example.emma.lab3;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class HomeUser extends AppCompatActivity {
@@ -11,8 +14,14 @@ public class HomeUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user);
 
-        TextView textview = findViewById(R.id.welcome_text);
-        String user = getIntent().getStringExtra("User");
-        textview.setText("Welcome User: "+ user);
+        Button historialButton = findViewById(R.id.historial_button);
+
+
+    }
+
+    public void historialButton(View view) {
+
+        Intent intent = new Intent(this, HistorialActivity.class);
+        startActivity(intent);
     }
 }

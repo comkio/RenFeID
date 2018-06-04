@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Creating Database
         db = Room.databaseBuilder(getApplicationContext(),
-                MyDatabase.class, "Database").allowMainThreadQueries().build();
+                MyDatabase.class, "Database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         /*List<Stops> stopsList = new LinkedList<>();
 
@@ -81,5 +81,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }
 

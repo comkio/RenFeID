@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Travel {
 
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     int id;
 
     int idFrom;
