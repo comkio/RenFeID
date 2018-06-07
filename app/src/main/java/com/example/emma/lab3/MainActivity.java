@@ -15,7 +15,6 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String myRfid;
     public static MyDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,23 +23,23 @@ public class MainActivity extends AppCompatActivity {
 
         //final String originIP = "192.168.2.110";
         //final String originIP = "localhost";
-        final String originIP = "192.168.1.132";//ip del pc en cas d'utilitzar simulador
-        final String destIP = "192.168.2.152";
+        final String originIP = "192.168.0.161";//ip del pc en cas d'utilitzar simulador
+        final String destIP = "192.168.0.164";
 
         //Creating Database
         db = Room.databaseBuilder(getApplicationContext(),
                 MyDatabase.class, "Database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
-        /*List<Stops> stopsList = new LinkedList<>();
+        List<Stops> stopsList = new LinkedList<>();
 
-        Stops stop1 = new Stops(1,"Vilassar de Mar", originIP);
-        Stops stop2 = new Stops(2,"Barcelona Sants", destIP);
+        Stops stop1 = new Stops(0,"Vilassar de Mar", originIP);
+        Stops stop2 = new Stops(0,"Barcelona Sants", destIP);
 
         stopsList.add(stop1);
         stopsList.add(stop2);
 
         db.myDao().insertStops(stopsList);
-
+/*
         //TODO: Llegir usuaris de la UI
         User user1 = new User(1,"Emma","123");
 

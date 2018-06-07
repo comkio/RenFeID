@@ -9,9 +9,9 @@ public class Travel {
     @PrimaryKey (autoGenerate = true)
     int id;
 
-    int idFrom;
+    String idFrom;
 
-    int idTo;
+    String idTo;
 
     boolean status;
 
@@ -19,13 +19,17 @@ public class Travel {
 
     int userId;
 
-    public Travel(int id, int idFrom, int idTo, boolean status, double cost, int userId) {
+    public Travel(int id, String idFrom, String idTo, boolean status, double cost, int userId) {
         this.id = id;
         this.idFrom = idFrom;
         this.idTo = idTo;
         this.status = status;
         this.cost = cost;
         this.userId = userId;
+    }
+
+    public Travel() {
+
     }
 
     public int getId() {
@@ -36,19 +40,19 @@ public class Travel {
         this.id = id;
     }
 
-    public int getIdFrom() {
+    public String getIdFrom() {
         return idFrom;
     }
 
-    public void setIdFrom(int idFrom) {
+    public void setIdFrom(String idFrom) {
         this.idFrom = idFrom;
     }
 
-    public int getIdTo() {
+    public String getIdTo() {
         return idTo;
     }
 
-    public void setIdTo(int idTo) {
+    public void setIdTo(String idTo) {
         this.idTo = idTo;
     }
 

@@ -22,6 +22,12 @@ public interface MyDao {
     @Query("SELECT id FROM travel WHERE userId = :user AND status LIKE 0")
     List<Integer> getAllTravelsByUser(int user);
 
+    @Query("SELECT id FROM travel WHERE userId = :user AND status LIKE 1")
+    int getOngoingTravelByUser(int user);
+
+    @Query("SELECT name FROM stops WHERE id = :id")
+    String getStopNameById(int id);
+
     @Query("SELECT * FROM stops")
     List<Stops> getAllStops();
 
@@ -38,7 +44,7 @@ public interface MyDao {
     void insertUsers(User... users);
 
     @Insert
-    void insertStops(Stops... stops);
+    void insertStops(List<Stops> stops);
 
     @Insert
     void insertTravels(Travel... travels);

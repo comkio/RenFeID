@@ -15,6 +15,13 @@ public class HomeUser extends AppCompatActivity {
         setContentView(R.layout.activity_home_user);
 
         Button historialButton = findViewById(R.id.historial_button);
+        int userID = MainActivity.db.myDao().getUserLogged();
+
+        int ongoingTravel = MainActivity.db.myDao().getOngoingTravelByUser(userID);
+        String ongoingStop = MainActivity.db.myDao().getStopNameById(ongoingTravel);
+
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(ongoingStop);
 
 
     }

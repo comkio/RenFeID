@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("ID", MainActivity.db.myDao().getAllUsers().get(i).getId());
                     intent.putExtra("User", user);
                     MainActivity.db.myDao().getAllUsers().get(i).setLogin(true);
+                    Log.d("login", String.valueOf(MainActivity.db.myDao().getAllUsers().get(i).isLogin()));
                     startActivity(intent);
                 }else{
                     Context context = getApplicationContext();

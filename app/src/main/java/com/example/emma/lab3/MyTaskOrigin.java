@@ -47,19 +47,13 @@ public class MyTaskOrigin extends AsyncTask {
             String status = nodeList2.item(0).getTextContent();
 
             if(status.equals("OK")) { //simulator started
+                Log.d("MyTaskOrig", "simulador emma started");
                 String url2 = url+"/data/inventory/items/item/data/"; //accedeix a la url on esta emmagatzemat el xml que volem llegir
                 Document doc3 = db.parse(new URL(url2).openStream()); //parseja el xml d'interes
                 NodeList nodeList3 = doc3.getElementsByTagName("hexepc"); //busca el parametre que ens interessa
                 if(nodeList3.getLength() != 0) {
                     rfidList.add(nodeList3.item(0).getTextContent());
-                    Log.d("LLEGINT", "Tag: "+ nodeList3.item(0).getTextContent());
-                    Log.d("LLEGINT", "Tag2: " + Integer.parseInt(nodeList3.item(0).getTextContent()));
-                    /*
-                    Stops stop = new Stops(Integer.parseInt(nodeList3.item(0).getTextContent()),"Vilassar de Mar", "localhost");
-                    MainActivity.db.myDao().insertStops(stop);
-                    Travel travel = new Travel(1, Integer.parseInt(nodeList3.item(0).getTextContent()), 0, true, 0.5, 1);
-                    MainActivity.db.myDao().insertTravels(travel);
-                    */
+                    Log.d("MyTaskOrig", "Llegint Tag: "+ nodeList3.item(0).getTextContent());
                 }
             }
 
@@ -76,8 +70,10 @@ public class MyTaskOrigin extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
-            MainActivity.db.myDao().insertTravels(new Travel(0,Integer.parseInt(originIP),0,true,0,
-                    MainActivity.db.myDao().getUserLogged()));
+            Log.d("MyTaskOrig", rfidList.get(0));
+            MainActivity.db.myDao().insertTravels(new Travel(0,originIP,"",true,0,
+                    Integer.parseInt(rfidList.get(0)))); //userId = rfid tag read
+            Log.d("MyTaskOrig", "post-travel");
         }
 
         /*int numUsers = MainActivity.db.myDao().numUsers();
