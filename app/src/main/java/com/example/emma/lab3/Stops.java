@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 @Entity
 public class Stops {
 
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     int id;
 
     String name;

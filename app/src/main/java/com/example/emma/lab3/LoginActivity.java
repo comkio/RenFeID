@@ -1,5 +1,9 @@
 package com.example.emma.lab3;
 
+/*
+* Usuari inicia sessio, login = true del camp d'usuari.
+*
+* */
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

@@ -63,7 +63,7 @@ public class MyTaskDest extends AsyncTask {
                         travel.setStatus(false);
                         travel.setIdTo(destIP);
                         travel.setCost(3); //Calcular preu segons hops
-                        MainActivity.db.myDao().insertTravels(travel);
+                        //no cal afegir el viatge, el viatge ja esta afegit a la llista de viatges
                         Log.i("MyTaskDest:", "FI DEL VIATGE. ID: "+MainActivity.db.myDao().getAllTravels());
                     }
                 }

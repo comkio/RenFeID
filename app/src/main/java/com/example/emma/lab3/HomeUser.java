@@ -1,5 +1,9 @@
 package com.example.emma.lab3;
 
+/*
+* Cal afegir un boto per a fer logout del usuari.
+*
+* */
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

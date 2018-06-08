@@ -1,5 +1,11 @@
 package com.example.emma.lab3;
 
+/*
+* Classe AsyncTask, llegeix de forma paral·lela els tags fent peticions http al servidor on esta llegeix el lector RFID.
+* Objectiu: Quan el tag llegit sigui igual al UserID amb la sessió iniciada, iniciar viatge.
+*
+* */
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -70,6 +76,9 @@ public class MyTaskOrigin extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
+
+            //Cal comparar si el tag llegit coincideix amb el user ID que tingui la sessió iniciada.
+            //if(MainActivity.db.myDao().getUserLogged() == rfidList.get(0)) llavors guardem el viatge
             Log.d("MyTaskOrig", rfidList.get(0));
             MainActivity.db.myDao().insertTravels(new Travel(0,originIP,"",true,0,
                     Integer.parseInt(rfidList.get(0)))); //userId = rfid tag read
