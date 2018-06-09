@@ -48,11 +48,14 @@ public class LoginActivity extends AppCompatActivity {
             if(user.equals(MainActivity.db.myDao().getAllUsers().get(i).getName())){
                 int index = i;
                 if(pass.equals(MainActivity.db.myDao().getAllUsers().get(index).getPassword())) {
+
+                    MainActivity.db.myDao().getAllUsers().get(index).setLogin(true);
+                    Log.d("login", String.valueOf(MainActivity.db.myDao().getAllUsers().get(index).isLogin()));
+                    Log.d("LOGIN", " Usuari: "+ MainActivity.db.myDao().getUserLogged());
+                    Log.d("LOGIN", "Usuari: " + index);
                     Intent intent = new Intent(this, HomeUser.class);
                     intent.putExtra("ID", MainActivity.db.myDao().getAllUsers().get(i).getId());
                     intent.putExtra("User", user);
-                    MainActivity.db.myDao().getAllUsers().get(i).setLogin(true);
-                    Log.d("login", String.valueOf(MainActivity.db.myDao().getAllUsers().get(i).isLogin()));
                     startActivity(intent);
                 }else{
                     Context context = getApplicationContext();

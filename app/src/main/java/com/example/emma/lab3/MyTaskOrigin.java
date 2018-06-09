@@ -76,13 +76,16 @@ public class MyTaskOrigin extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
-
+            
             //Cal comparar si el tag llegit coincideix amb el user ID que tingui la sessió iniciada.
             //if(MainActivity.db.myDao().getUserLogged() == rfidList.get(0)) llavors guardem el viatge
-            Log.d("MyTaskOrig", rfidList.get(0));
-            MainActivity.db.myDao().insertTravels(new Travel(0,originIP,"",true,0,
-                    Integer.parseInt(rfidList.get(0)))); //userId = rfid tag read
-            Log.d("MyTaskOrig", "post-travel");
+            if(MainActivity.db.myDao().getUserLogged() == Integer.parseInt(rfidList.get(0))) {
+                Log.d("MyTaskOrig", rfidList.get(0));
+                MainActivity.db.myDao().insertTravels(new Travel(0, originIP, "", true, 0,
+                        Integer.parseInt(rfidList.get(0)))); //userId = rfid tag read
+                Log.d("MyTaskOrig", "post-travel");
+            }
+
         }
 
         /*int numUsers = MainActivity.db.myDao().numUsers();

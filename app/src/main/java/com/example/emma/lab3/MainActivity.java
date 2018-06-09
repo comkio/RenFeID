@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         //final String originIP = "192.168.2.110";
         //final String originIP = "localhost";
-        final String originIP = "192.168.0.161";//ip del pc en cas d'utilitzar simulador
+        final String originIP = "192.168.1.36";//ip del pc en cas d'utilitzar simulador
         final String destIP = "192.168.0.164";
 
         //Creating Database

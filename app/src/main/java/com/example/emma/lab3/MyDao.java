@@ -19,8 +19,8 @@ public interface MyDao {
     @Query("SELECT * FROM travel")
     List<Travel> getAllTravels();
 
-    @Query("SELECT id FROM travel WHERE userId = :user AND status LIKE 0")
-    List<Integer> getAllTravelsByUser(int user);
+    @Query("SELECT * FROM travel WHERE userId = :user")
+    List<Travel> getAllTravelsByUser(int user);
 
     @Query("SELECT id FROM travel WHERE userId = :user AND status LIKE 1")
     int getOngoingTravelByUser(int user);
