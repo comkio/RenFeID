@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginButton(String user, String pass){
 
+        boolean state = true;
         int numUsers = MainActivity.db.myDao().numUsers();
 
         Log.d("print", "numUsuaris: "+ numUsers);
@@ -49,12 +50,13 @@ public class LoginActivity extends AppCompatActivity {
                 int index = i;
                 if(pass.equals(MainActivity.db.myDao().getAllUsers().get(index).getPassword())) {
 
-                    MainActivity.db.myDao().getAllUsers().get(index).setLogin(true);
-                    Log.d("login", String.valueOf(MainActivity.db.myDao().getAllUsers().get(index).isLogin()));
-                    Log.d("LOGIN", " Usuari: "+ MainActivity.db.myDao().getUserLogged());
+                    MainActivity.db.myDao().getAllUsers().get(index).setLogin(1);
+                    Log.d("login", String.valueOf(MainActivity.db.myDao().getAllUsers().get(index).getLogin()));
+                    Log.d("LOGIN", "Usuari: " + MainActivity.db.myDao().getUserLogged());
+                    Log.d("LOGIN", "Usuari: " + MainActivity.db.myDao().getAllUsers().get(index).toString());
                     Log.d("LOGIN", "Usuari: " + index);
                     Intent intent = new Intent(this, HomeUser.class);
-                    intent.putExtra("ID", MainActivity.db.myDao().getAllUsers().get(i).getId());
+                    intent.putExtra("ID", MainActivity.db.myDao().getAllUsers().get(index).getId());
                     intent.putExtra("User", user);
                     startActivity(intent);
                 }else{
@@ -68,8 +70,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 }

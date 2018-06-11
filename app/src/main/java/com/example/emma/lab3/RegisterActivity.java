@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         //comprova si la taula esta buida, si ho esta crea el primer registre
         if(MainActivity.db.myDao().numUsers() == 0) {
 
-            User user = new User(0, userName, userPass, false);
+            User user = new User(0, userName, userPass);
             MainActivity.db.myDao().insertUsers(user);
 
             Context context = getApplicationContext();
@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         }else{//si la taula ja te registres agafa en crea un de nou amb el següent id
 
-            User user = new User(0,userName, userPass, false);
+            User user = new User(0,userName, userPass);
             MainActivity.db.myDao().insertUsers(user);
             Context context = getApplicationContext();
             CharSequence text = "Usuari Registrat!";

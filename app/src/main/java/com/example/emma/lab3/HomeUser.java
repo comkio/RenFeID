@@ -7,6 +7,7 @@ package com.example.emma.lab3;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,9 +26,13 @@ public class HomeUser extends AppCompatActivity {
         TextView welcome = findViewById(R.id.welcome_text);
         int userID = MainActivity.db.myDao().getUserLogged();
 
+
         int ongoingTravel = MainActivity.db.myDao().getOngoingTravelByUser(userID);
         String ongoingStop = MainActivity.db.myDao().getStopNameById(ongoingTravel);
         welcome.setText("Benvingut " + getIntent().getStringExtra("User"));
+        User user = MainActivity.db.myDao().getAllUsers().get(1);
+        Log.d("UserLogged", user.toString());
+        Log.d("UserLogged", "Logejat: " + user.getLogin());
         if(MainActivity.db.myDao().getAllTravels().size() != 0)
         ongoingStop = ongoingStop + MainActivity.db.myDao().getAllTravels().get(0).getIdFrom().toString();
 
@@ -45,7 +50,8 @@ public class HomeUser extends AppCompatActivity {
     public void logoutButton(View view){
         int userLogged = MainActivity.db.myDao().getUserLogged();
         User user = MainActivity.db.myDao().getAllUsers().get(userLogged);
-        user.setLogin(false);
+        user.setLogin(0);
+        Log.d("UserLogged", "Logejat: " + user.getLogin());
         finish();
     }
 }
