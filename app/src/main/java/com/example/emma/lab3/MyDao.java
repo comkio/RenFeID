@@ -29,6 +29,18 @@ public interface MyDao {
     @Query("SELECT name FROM stops WHERE id = :id")
     String getStopNameById(int id);
 
+    @Query("UPDATE user SET login=:new_login WHERE id=:id")
+    void updateUser(int new_login, int id);
+
+    @Query("UPDATE travel SET status=:new_status WHERE id=:id")
+    void updateStatusTravel(boolean new_status, int id);
+
+    @Query("UPDATE travel SET cost=:new_cost WHERE id=:id")
+    void updateCostTravel(int new_cost, int id);
+
+    @Query("UPDATE travel SET idto=:new_idto WHERE id=:id")
+    void updateIdToTravel(String new_idto, int id);
+
     @Query("SELECT * FROM stops")
     List<Stops> getAllStops();
 

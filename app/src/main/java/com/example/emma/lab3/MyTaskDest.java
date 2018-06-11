@@ -50,19 +50,15 @@ public class MyTaskDest extends AsyncTask {
                     rfid = nodeList3.item(0).getTextContent(); //tag que llegeix a l'estacio desti
                     Log.d("MyTaskDest:", "llegint tag: "+rfid);
                     int travelInitiated = MainActivity.db.myDao().getTravelInitiated();
-                    Log.d("mytaskdest", String.valueOf(travelInitiated));
                     Travel travel = new Travel();
                     if(travelInitiated != 0) {
                         travel = MainActivity.db.myDao().getAllTravels().get(0);
                     }
-                    //Log.d("mytaskdest",travel.getIdFrom());
                     if (Integer.parseInt(rfid) == travel.userId){
-                        Log.d("MyTaskDest:", "travel.userid: "+String.valueOf(travel.userId));
-                        travel.setStatus(false);
-                        travel.setIdTo(destIP);
-                        travel.setCost(3); //Calcular preu segons hops
-                        //no cal afegir el viatge, el viatge ja esta afegit a la llista de viatges
-                        Log.i("MyTaskDest:", "FI DEL VIATGE. ID: "+MainActivity.db.myDao().getAllTravels());
+                        Log.d("mytaskdest","TRAVEL FINISHED!");
+                        MainActivity.db.myDao().updateStatusTravel(false,travel.getId());
+                        MainActivity.db.myDao().updateCostTravel(3,travel.getId());
+                        MainActivity.db.myDao().updateIdToTravel(destIP,travel.getId());
                     }
                 }
             }

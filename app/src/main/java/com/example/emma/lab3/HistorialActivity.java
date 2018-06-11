@@ -24,23 +24,10 @@ public class HistorialActivity extends AppCompatActivity {
         List<Travel> travelById = MainActivity.db.myDao().getAllTravelsByUser(userID);
         List<String> travelInfo = new LinkedList<>();
 
-   //     travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-    //    travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-     //   travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-       // travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-      //  travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-       // travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-       // travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-       // travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-        //travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-        //travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-
-        Log.d("historial", String.valueOf(userID));
-
         for(int i = 0; i < travelById.size(); i++) {
-            String info = "Estació Origen: " + travelById.get(i).getIdFrom() + "--->" + "Estació Destí: " + travelById.get(i).getIdTo();
+            Log.d("historial:","travel id to: "+travelById.get(i).getIdTo());
+            String info = "Origen: " + travelById.get(i).getIdFrom() + " --> " + "Destí: " + travelById.get(i).getIdTo() + ". Preu: " + travelById.get(i).getCost();
             travelInfo.add(info);
-            Log.d("historial:", String.valueOf(travelById));
         }
         ArrayAdapter<String> adaptador = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, travelInfo);
 

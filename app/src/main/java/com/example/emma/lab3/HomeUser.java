@@ -31,9 +31,6 @@ public class HomeUser extends AppCompatActivity {
         String ongoingStop = MainActivity.db.myDao().getStopNameById(ongoingTravel);
         welcome.setText("Benvingut " + getIntent().getStringExtra("User"));
 
-        if(MainActivity.db.myDao().getAllTravels().size() != 0)
-        ongoingStop = ongoingStop + MainActivity.db.myDao().getAllTravels().get(0).getIdFrom().toString();
-
         TextView textView = findViewById(R.id.textView);
         textView.setText(ongoingStop);
 
@@ -48,7 +45,7 @@ public class HomeUser extends AppCompatActivity {
     public void logoutButton(View view){
         int userLogged = MainActivity.db.myDao().getUserLogged();
         User user = MainActivity.db.myDao().getAllUsers().get(userLogged);
-        user.setLogin(0);
+        MainActivity.db.myDao().updateUser(0,user.getId());
         finish();
     }
 }
