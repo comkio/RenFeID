@@ -24,16 +24,16 @@ public class HistorialActivity extends AppCompatActivity {
         List<Travel> travelById = MainActivity.db.myDao().getAllTravelsByUser(userID);
         List<String> travelInfo = new LinkedList<>();
 
-        travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-        travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-        travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-        travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-        travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-        travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-        travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-        travelInfo.add("Origen: Sants ---> Destí: Barcelona");
-        travelInfo.add("Origen: Vilassar ---> Destí: Sants");
-        travelInfo.add("Origen: Sants ---> Destí: Barcelona");
+   //     travelInfo.add("Origen: Vilassar ---> Destí: Sants");
+    //    travelInfo.add("Origen: Sants ---> Destí: Barcelona");
+     //   travelInfo.add("Origen: Vilassar ---> Destí: Sants");
+       // travelInfo.add("Origen: Sants ---> Destí: Barcelona");
+      //  travelInfo.add("Origen: Vilassar ---> Destí: Sants");
+       // travelInfo.add("Origen: Sants ---> Destí: Barcelona");
+       // travelInfo.add("Origen: Vilassar ---> Destí: Sants");
+       // travelInfo.add("Origen: Sants ---> Destí: Barcelona");
+        //travelInfo.add("Origen: Vilassar ---> Destí: Sants");
+        //travelInfo.add("Origen: Sants ---> Destí: Barcelona");
 
         Log.d("historial", String.valueOf(userID));
 

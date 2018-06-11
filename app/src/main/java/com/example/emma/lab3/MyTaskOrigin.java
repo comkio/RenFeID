@@ -34,7 +34,6 @@ public class MyTaskOrigin extends AsyncTask {
     protected Object doInBackground(Object[] o) {
         String stringUrl = "http://"+originIP+":3161/devices";
         try {
-
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
 
@@ -53,7 +52,6 @@ public class MyTaskOrigin extends AsyncTask {
             String status = nodeList2.item(0).getTextContent();
 
             if(status.equals("OK")) { //simulator started
-                Log.d("MyTaskOrig", "simulador emma started");
                 String url2 = url+"/data/inventory/items/item/data/"; //accedeix a la url on esta emmagatzemat el xml que volem llegir
                 Document doc3 = db.parse(new URL(url2).openStream()); //parseja el xml d'interes
                 NodeList nodeList3 = doc3.getElementsByTagName("hexepc"); //busca el parametre que ens interessa
@@ -76,23 +74,14 @@ public class MyTaskOrigin extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         if(rfidList.size() != 0) {
-            
             //Cal comparar si el tag llegit coincideix amb el user ID que tingui la sessió iniciada.
-            //if(MainActivity.db.myDao().getUserLogged() == rfidList.get(0)) llavors guardem el viatge
+            Log.d("mytaskorig","getuserlogged:"+MainActivity.db.myDao().getUserLogged());
             if(MainActivity.db.myDao().getUserLogged() == Integer.parseInt(rfidList.get(0))) {
-                Log.d("MyTaskOrig", rfidList.get(0));
+                Log.d("MyTaskOrig", "trvel: "+rfidList.get(0));
                 MainActivity.db.myDao().insertTravels(new Travel(0, originIP, "", true, 0,
                         Integer.parseInt(rfidList.get(0)))); //userId = rfid tag read
-                Log.d("MyTaskOrig", "post-travel");
             }
 
         }
-
-        /*int numUsers = MainActivity.db.myDao().numUsers();
-
-
-        if (MainActivity.db.myDao().numStops() > 0) {
-            Log.i("MyTaskOrigin:", "rfid read:" + MainActivity.db.myDao().getAllStops().get(0).getName());
-        }*/
     }
 }

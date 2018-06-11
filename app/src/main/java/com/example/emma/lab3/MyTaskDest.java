@@ -43,23 +43,21 @@ public class MyTaskDest extends AsyncTask {
             //Segons l'antena que retorni l'iventory, sera una estacio de tren una altra
             String rfid = "";
             if(status.equals("OK")) { //simulator started
-                Log.d("MyTaskDest:", "simulador arnau started");
-                Log.i("MyTaskDest:", "status OK");
                 String url2 = url+"/data/inventory/items/item/data/";
                 Document doc3 = db.parse(new URL(url2).openStream());
                 NodeList nodeList3 = doc3.getElementsByTagName("hexepc");
                 if(nodeList3.getLength() != 0) {
-                    Log.d("MyTaskDest:", "llegint tags pc arnau");
                     rfid = nodeList3.item(0).getTextContent(); //tag que llegeix a l'estacio desti
+                    Log.d("MyTaskDest:", "llegint tag: "+rfid);
                     int travelInitiated = MainActivity.db.myDao().getTravelInitiated();
                     Log.d("mytaskdest", String.valueOf(travelInitiated));
                     Travel travel = new Travel();
                     if(travelInitiated != 0) {
                         travel = MainActivity.db.myDao().getAllTravels().get(0);
                     }
-                    Log.d("mytaskdest",travel.getIdFrom());
+                    //Log.d("mytaskdest",travel.getIdFrom());
                     if (Integer.parseInt(rfid) == travel.userId){
-                        Log.d("MyTaskDest:", String.valueOf(travel.userId));
+                        Log.d("MyTaskDest:", "travel.userid: "+String.valueOf(travel.userId));
                         travel.setStatus(false);
                         travel.setIdTo(destIP);
                         travel.setCost(3); //Calcular preu segons hops
@@ -81,6 +79,5 @@ public class MyTaskDest extends AsyncTask {
 
     @Override
     protected void onPostExecute(Object o) {
-        Log.i("MyTask", "post: ");
     }
 }

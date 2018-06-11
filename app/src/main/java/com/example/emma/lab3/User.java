@@ -16,14 +16,14 @@ public class User {
 
     String password;
 
-    int login = 0;
+    int login;
 
-    public User(int id, String name, String password){
+    public User(int id, String name, String password, int login){
 
         this.id = id;
         this.name = name;
         this.password = password;
-
+        this.login = login;
     }
 
     public int getId() {
@@ -49,7 +49,6 @@ public class User {
     public void setLogin(int login) {
         this.login = login;
     }
-
 
     public String getPassword() {
         return password;
